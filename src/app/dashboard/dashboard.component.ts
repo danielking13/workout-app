@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import { ApiService } from '../api.service';
 
 export interface Tile {
   color: string;
@@ -15,7 +16,7 @@ export interface Tile {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.less']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
 
   tiles: Tile[] = [
     {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
@@ -26,14 +27,16 @@ export class DashboardComponent {
 
   data: any = {};
 
- constructor(private http: HttpClient) {
+ constructor(private apiService: ApiService, private http: HttpClient) {
    this.getVerses();
    this.getData();
-   this.displayData();
  }
- displayData() {
-   console.log(this.data);
+
+ ngOnInit() {
+   this.apiService.getMessages();
  }
+
+
  getData() {
    // const httpOptions = {
    //   headers: new HttpHeaders({

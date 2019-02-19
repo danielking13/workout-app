@@ -2,54 +2,69 @@ var express = require('express')
 var app = express()
 var cors = require('cors')
 var mongoose = require('mongoose')
-var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+const OktaJwtVerifier = require('@okta/jwt-verifier');
 
+const oktaJwtVerifier = new OktaJwtVerifier({
+  issuer: 'https://dev-199481.oktapreview.com/oauth2/default',
+  clientId: '0oajdeqohemJ1Ny6A0h7',
+  assertClaims: {
+    aud: 'api://default',
+  },
+});
 
 var User = require('./models/User.js')
 
-var posts = [
-  {message: 'hello'},
-  {message: 'hi'}
-]
-
 app.use(cors())
 
-app.get('/posts', (req, res) => {
-  res.send(posts)
+/**
+* A simple middleware that asserts valid access tokens and sends 401 responses
+* if the token is not present or fails validation.  If the token is valid its
+* contents are attached to req.jwt
+*/
+function authenticationRequired(req, res, next) {
+ const authHeader = req.headers.authorization || '';
+ const match = authHeader.match(/Bearer (.+)/);
+
+ if (!match) {
+   return res.status(401).end();
+ }
+
+ const accessToken = match[1];
+
+ return oktaJwtVerifier.verifyAccessToken(accessToken)
+   .then((jwt) => {
+     req.jwt = jwt;
+     next();
+   })
+   .catch((err) => {
+     res.status(401).send(err.message);
+   });
+}
+
+/**
+ * An example route that requires a valid access token for authentication, it
+ * will echo the contents of the access token if the middleware successfully
+ * validated the token.
+ */
+app.get('/dashboard', authenticationRequired, (req, res) => {
+  res.json(req.jwt);
+});
+
+/**
+ * Another example route that requires a valid access token for authentication, and
+ * print some messages for the user if they are authenticated
+ */
+app.get('/api/messages', authenticationRequired, (req, res) => {
+  res.json([{
+    message: 'Hello, word!'
+  }]);
+});
+
+app.post('/login', (req, res) => {
+  console.log(req.body)
 })
 
-//login authentication
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
 
-//routing
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/dashboard',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
-
-// app.post('/login', passport.authenticate('local'),
-//   function(req, res) {
-//     res.redirect()
-//   });
-//
-// mongoose.connect('mongodb://localhost:27017/', { useMongoClient: true}, (err) => {
-//   if(!err)
-//     console.log('connected to mongo');
-// })
-
-app.listen(3000)
+app.listen(3000, () => {
+  console.log('Serve Ready on port 3000');
+});

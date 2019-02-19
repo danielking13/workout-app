@@ -1,4 +1,4 @@
-<app-my-nav *ngIf="userIsLoggedIn; else loggedOut"></app-my-nav>
+<app-my-nav *ngIf="isAuthenticated; else loggedOut"></app-my-nav>
 <ng-template #loggedOut>
   <app-login></app-login>
 </ng-template>

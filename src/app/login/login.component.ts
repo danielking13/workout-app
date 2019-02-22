@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   isNewUser = false;
   loginData = { username: '', password: '' };
+
   newUserData = {
     login: '',
     password: '',
@@ -25,12 +26,9 @@ export class LoginComponent implements OnInit {
 
   message = '';
   data: any;
-  isAuthenticated: boolean;
-  constructor(private http: HttpClient, public oktaAuth: OktaAuthService) {
-    this.oktaAuth.$authenticationState.subscribe(
-     (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
-   );
-  }
+
+  constructor(private http: HttpClient) { }
+
 
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
@@ -46,11 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.oktaAuth.loginRedirect('/dashboard');
-  }
 
-  logout() {
-    this.oktaAuth.logout('/');
   }
 
   // login() {
@@ -64,13 +58,7 @@ export class LoginComponent implements OnInit {
   // }
 
   createAccount() {
-    this.http.post('https://dev-199481.oktapreview.com/api/v1/users?activate=true', this.loginData).subscribe(resp => {
-      console.log(resp);
-      // this.router.navigate(['login']);
-      this.oktaAuth.loginRedirect('dashboard');
-    }, err => {
-      this.message = err.error.msg;
-    });
+
   }
   //
   // ngOnInit() {

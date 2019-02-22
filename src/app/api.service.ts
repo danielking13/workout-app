@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiService {
   messages: any = [];
-  userData: any;
-  username: string;
+
   constructor( private http: HttpClient) {}
 
   getMessages() {
@@ -15,10 +14,16 @@ export class ApiService {
     });
   }
 
-  createNewUser(newUserData) {
-    this.http.post('https://dev-199481.oktapreview.com/api/v1/users?activate=true', newUserData).subscribe( res => {
-       this.userData = res;
-      this.username = this.userData.profile.login;
-      });
+
+  getData() {
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Authorization': '3094269465c2d1bbd40ebe99a2fa422fa661b925'
+    //   })
+    // };
+    return this.http.get('https://wger.de/api/v2/exercise/').subscribe(data => {
+      console.log(data);
+      // this.data = data;
+    });
   }
 }

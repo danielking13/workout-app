@@ -5,6 +5,11 @@ var mongoose = require('mongoose')
 
 var User = require('./models/User.js')
 
+var posts = [
+  {message: 'hello'},
+  {message: 'hi'}
+]
+
 app.use(cors())
 
 app.listen(3000, () => {

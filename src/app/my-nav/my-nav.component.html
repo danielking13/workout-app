@@ -9,6 +9,7 @@
       <a mat-list-item href="#"><mat-icon>local_dining</mat-icon>Diet</a>
       <a mat-list-item href="#"><mat-icon>fitness_center</mat-icon> Exercises</a>
       <a mat-list-item routerLink="/profile"><mat-icon>person</mat-icon>My Profile</a>
+      <a mat-list-item (click)="auth.logout()"><mat-icon>person_outline</mat-icon>Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

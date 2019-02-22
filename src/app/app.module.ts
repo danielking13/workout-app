@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ApiService } from './api.service';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import {AuthService} from './auth.service';
+import {AuthInterceptorService} from './authInterceptor.service';
 
 
 @NgModule({
@@ -41,7 +43,11 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, AuthService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

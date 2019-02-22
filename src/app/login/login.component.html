@@ -6,11 +6,11 @@
     <form (ngSubmit)="login()" #loginForm="ngForm">
       <div class="formContainer">
         <mat-form-field>
-          <input matInput placeholder="Enter your email" [formControl]="email" [(ngModel)]="loginData.username" name="username" required>
+          <input matInput placeholder="Enter your email" [formControl]="email" [(ngModel)]="loginData.email" name="email" required>
           <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="loginData.password" name="username" required>
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="loginData.password" name="password" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
       </div>
@@ -22,31 +22,34 @@
   </mat-card-actions>
 </mat-card>
 
+<!--here is the create new user card and logic-->
 <mat-card *ngIf="isNewUser" class="loginCard">
   <mat-card-header>
-    <mat-card-title>Login </mat-card-title>
+    <mat-card-title>New Account </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form (ngSubmit)="createAccount()" #newUserForm="ngForm">
       <div class="formContainer">
         <mat-form-field>
-          <input matInput placeholder="First name" required>
+          <input matInput placeholder="First name" [(ngModel)]="newUserData.profile.firstName" name="firstName" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Last name" value="" required>
+          <input matInput placeholder="Last name" value="" [(ngModel)]="newUserData.profile.lastName" name="lastName" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Enter your email" [formControl]="email" required>
+          <input matInput placeholder="Enter your email" [formControl]="email" [(ngModel)]="newUserData.email" name="email" required>
           <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
+          <input matInput placeholder="Enter your password"  [type]="hide ? 'password' : 'text'"
+                 [(ngModel)]="newUserData.password" name="password" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Re-enter your password" [type]="hide ? 'password' : 'text'" required>
-          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </mat-form-field>
+        <!--&lt;!&ndash;<mat-form-field>&ndash;&gt; implemment if i have time-->
+          <!--<input matInput placeholder="Re-enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="confirmPass"-->
+                 <!--name="password2" (keyup.enter)="checkIfPasswordSame" required>-->
+          <!--<mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
+        <!--</mat-form-field>-->
       </div>
     </form>
   </mat-card-content>

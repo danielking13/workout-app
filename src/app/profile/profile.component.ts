@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from '../api.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,13 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
-  userData = { username: '', password: '', firstName: '', lastName: '', height: '', gender: '', dob: '', bodyFat: '', weight: '' };
-  username = 'Applebottom Jean';
+  userData = {
+    email: String,
+    password: String,
+    profile: {
+      firstName: String,
+      lastName: String,
+      height: String,
+      weight: Number,
+      gender: String,
+      bodyFatPercent: Number
+    }
+  };
   canEdit = false;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.apiService.getUserData().subscribe(userData => {
+      console.log(userData);
+      this.userData = userData;
+      // this.userData.email = userData.email;
+    });
   }
 
   allowEditing() {

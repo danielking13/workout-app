@@ -12,8 +12,6 @@ export class LoginComponent implements OnInit {
   hide = true;
   isNewUser = false;
   loginData = { username: '', password: '' };
-  message = '';
-  data: any;
 
   constructor(private http: HttpClient) { }
 
@@ -26,22 +24,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.http.post('/server/api/login', this.loginData).subscribe(resp => {
-      this.data = resp;
-      localStorage.setItem('jwtToken', this.data.token);
-      // this.router.navigate(['home']);
-    }, err => {
-      this.message = err.error.msg;
-    });
+
   }
 
   createAccount() {
-    this.http.post('/server/api/createAccount', this.loginData).subscribe(resp => {
-      console.log(resp);
-      // this.router.navigate(['login']);
-    }, err => {
-      this.message = err.error.msg;
-    });
+
   }
 
   ngOnInit() {

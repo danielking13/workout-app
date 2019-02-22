@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   isNewUser = false;
   loginData = { username: '', password: '' };
+
   newUserData = {
     login: '',
     password: '',
@@ -24,8 +25,14 @@ export class LoginComponent implements OnInit {
 
   message = '';
   data: any;
+<<<<<<< HEAD
   isAuthenticated: boolean;
   constructor(private http: HttpClient) {}
+=======
+
+  constructor(private http: HttpClient) { }
+
+>>>>>>> 6f31b66f5c7388e3b0322075479587a4db05a4ef
 
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
@@ -36,9 +43,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+<<<<<<< HEAD
   }
 
   logout() {
+=======
+
+>>>>>>> 6f31b66f5c7388e3b0322075479587a4db05a4ef
   }
 
   // login() {
@@ -52,6 +63,7 @@ export class LoginComponent implements OnInit {
   // }
 
   createAccount() {
+<<<<<<< HEAD
     // this.http.post('https://dev-199481.oktapreview.com/api/v1/users?activate=true', this.loginData).subscribe(resp => {
     //   console.log(resp);
     //   // this.router.navigate(['login']);
@@ -62,6 +74,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+=======
+
+>>>>>>> 6f31b66f5c7388e3b0322075479587a4db05a4ef
   }
 
 }

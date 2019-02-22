@@ -2,6 +2,7 @@ var express = require('express')
 var app = express()
 var cors = require('cors')
 var mongoose = require('mongoose')
+
 var User = require('./models/User.js')
 
 var posts = [
@@ -20,4 +21,6 @@ mongoose.connect('mongodb://localhost:27017/', (err) => {
     console.log('connected to mongo');
 })
 
-app.listen(3000)
+app.listen(3000, () => {
+  console.log('Serve Ready on port 3000');
+});

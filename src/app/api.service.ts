@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiService {
   messages: any = [];
+
   constructor( private http: HttpClient) {}
 
   getMessages() {
@@ -12,6 +13,7 @@ export class ApiService {
       this.messages = res;
     });
   }
+
 
   getData() {
     // const httpOptions = {

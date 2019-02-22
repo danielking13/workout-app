@@ -1,0 +1,63 @@
+<h1>Dashboard</h1>
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    <mat-card class="loginCard">
+      <mat-card-header>
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-card-title>Macros for the day</mat-card-title>
+      </mat-card-header>
+      <!-- can throw in pic here -->
+      <mat-card-content>
+        <p>here is where the content will be Lorem ipsum dolor set amet
+          Lorem ipsum dolor set amet Lorem ipsum dolor set amet Lorem ipsum
+          dolor set amet Lorem ipsum dolor set amet</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>GO TO COMPONENT</button>
+      </mat-card-actions>
+    </mat-card>
+</mat-grid-tile>
+<mat-grid-tile>
+    <mat-card class="loginCard">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Card Title</mat-card-title>
+        <mat-card-subtitle>Sub title</mat-card-subtitle>
+      </mat-card-header>
+      <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+      <mat-card-content>
+        <!-- <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p> -->
+        <div *ngFor="let message of apiService.messages">
+          <p>{{message.message}}</p>
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<!-- <mat-grid-list cols="2" rowHeight="200px" gutterSize="10px">
+  <mat-grid-tile>Look at macros for the day</mat-grid-tile>
+  <mat-grid-tile>Generate workout</mat-grid-tile>
+  <mat-grid-tile>Chart of data</mat-grid-tile>
+  <mat-grid-tile>4</mat-grid-tile>
+</mat-grid-list> -->
+
+<!-- Dynamic grid list. May use and randomize order to keep ui fresh? -->
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile
+      *ngFor="let tile of tiles"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [style.background]="tile.color">
+    {{tile.text}}
+  </mat-grid-tile>
+</mat-grid-list>

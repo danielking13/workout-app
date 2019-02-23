@@ -25,9 +25,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.getUserData().subscribe(userData => {
-      console.log(userData);
+      // console.log(userData);
       this.userData = userData;
-      // this.userData.email = userData.email;
     });
   }
 

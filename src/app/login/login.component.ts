@@ -12,17 +12,19 @@ export class LoginComponent {
   hide = true;
   isNewUser = false;
   loginData = { email: '', password: '' };
-
+  feet: number = 0;
+  inches: number = 0;
   newUserData = {
     email: '',
     password: '',
     profile: {
       firstName: '',
-      lastName: ''
-      // height: '',
-      // weight: Number,
-      // gender: String,
-      // bodyFatPercent: Number
+      lastName: '',
+      height: '',
+      weight: '',
+      gender: String,
+      bodyFatPercent: Number,
+      dob: String
     }
   };
 
@@ -41,6 +43,8 @@ export class LoginComponent {
   }
 
   createAccount() {
+    const totalIn = +this.feet * 12 + +this.inches;
+    this.newUserData.profile.height = totalIn.toString();
     this.authService.createUser(this.newUserData);
   }
 

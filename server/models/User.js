@@ -7,10 +7,11 @@ var userSchema = new mongoose.Schema({
   profile: {
     firstName: String,
     lastName: String,
-    height: String,
+    height: Number,
     weight: Number,
     gender: String,
-    bodyFatPercent: Number
+    bodyFatPercent: Number,
+    dob: String
   }
 })
 

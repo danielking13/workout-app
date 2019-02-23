@@ -45,6 +45,30 @@
                  [(ngModel)]="newUserData.password" name="password" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
+        <div class="height">
+          <mat-form-field>
+            <input matInput placeholder="Height" value="" [(ngModel)]="feet" name="feet">
+            <span matSuffix>ft</span>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Height" value="" [(ngModel)]="inches" name="in">
+            <span matSuffix>in</span>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <input matInput type="number" placeholder="Weight" value="" [(ngModel)]="newUserData.profile.weight" name="weight">
+          <span matSuffix>lbs</span>
+        </mat-form-field>
+        <mat-radio-group [(ngModel)]="newUserData.profile.gender" name="gender">
+          <mat-radio-button value="Male" >Male</mat-radio-button>
+          <mat-radio-button value="Female">Female</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field>
+          <input matInput min="1900-01-01" max="2018-01-01" placeholder="Date of Birth" type="date" value=""
+                 [(ngModel)]="newUserData.profile.dob" name="dob" required>
+        </mat-form-field>
+
         <!--&lt;!&ndash;<mat-form-field>&ndash;&gt; implemment if i have time-->
           <!--<input matInput placeholder="Re-enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="confirmPass"-->
                  <!--name="password2" (keyup.enter)="checkIfPasswordSame" required>-->

@@ -13,6 +13,7 @@
           <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="loginData.password" name="password" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
+        <mat-error *ngIf="failedAuthenticationMessage">{{failedAuthenticationMessage}}</mat-error>
       </div>
     </form>
   </mat-card-content>

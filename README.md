@@ -7,15 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 [API Reference](https://wger.de/en/software/api)
 
-[OktaAPI](https://developer.okta.com/docs/api/resources/users)
-
-API Token for oktaAuth:
-
-00COcOSig83elIfkj1S17lsSDBdSNqyLtWHxk-9YJ1
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+[Google Charts Library](https://github.com/gmazzamuto/ng2-google-charts)
 
 ## Code scaffolding
 

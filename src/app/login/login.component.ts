@@ -10,6 +10,7 @@ import {AuthService} from '../auth.service';
 export class LoginComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
+  failedAuthenticationMessage = '';
   isNewUser = false;
   loginData = { email: '', password: '' };
   feet: number = 0;
@@ -40,6 +41,9 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.loginData);
+    if(!this.authService.isAuthenticated) {
+        this.failedAuthenticationMessage = 'Error: Email and password did not match our records.';
+    }
   }
 
   createAccount() {

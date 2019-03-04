@@ -7,18 +7,19 @@ import {ApiService} from '../api.service';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
-  userData = {
-    email: String,
-    password: String,
-    profile: {
-      firstName: String,
-      lastName: String,
-      height: String,
-      weight: Number,
-      gender: String,
-      bodyFatPercent: Number
-    }
-  };
+  userData: any;
+  // userData = {
+  //   email: String,
+  //   password: String,
+  //   profile: {
+  //     firstName: String,
+  //     lastName: String,
+  //     height: String,
+  //     weight: Number,
+  //     gender: String,
+  //     bodyFatPercent: Number
+  //   }
+  // };
   canEdit = false;
 
   constructor(private apiService: ApiService) { }

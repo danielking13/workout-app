@@ -17,7 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AuthService} from './auth.service';
 import {AuthInterceptorService} from './authInterceptor.service';
-
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import {AuthInterceptorService} from './authInterceptor.service';
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    MatRadioModule
+    MatRadioModule,
+    Ng2GoogleChartsModule
   ],
   providers: [ApiService, AuthService, {
     provide: HTTP_INTERCEPTORS,

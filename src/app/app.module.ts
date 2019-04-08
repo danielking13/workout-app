@@ -8,7 +8,7 @@ import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule,
-  MatFormFieldModule, MatInputModule, MatRadioModule
+  MatFormFieldModule, MatInputModule, MatRadioModule, MatButtonToggleModule, MatSelectModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {AuthService} from './auth.service';
 import {AuthInterceptorService} from './authInterceptor.service';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { DietComponent } from './diet/diet.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     MyNavComponent,
     DashboardComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    DietComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,9 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     ReactiveFormsModule,
     FormsModule,
     MatRadioModule,
-    Ng2GoogleChartsModule
+    Ng2GoogleChartsModule,
+    MatButtonToggleModule,
+    MatSelectModule
   ],
   providers: [ApiService, AuthService, {
     provide: HTTP_INTERCEPTORS,

@@ -50,13 +50,24 @@ export class DashboardComponent implements OnInit {
   public lineChart = {
     chartType: 'LineChart',
     dataTable: [
-      ['Year', 'Sales', 'Expenses'],
-      ['2004',  1000,      400],
-      ['2005',  1170,      460],
-      ['2006',  660,       1120],
-      ['2007',  1030,      540]
+      ['Year', 'Weight'],
+      ['2004',  100],
+      ['2005',  117],
+      ['2006',  66],
+      ['2007',  103]
     ],
-    options: {title: 'My weight'}
+    options: {
+      title: 'My weight',
+      legend: { position: 'bottom' }
+    }
+  };
+
+  public barChart = {
+    chartType: 'Bar',
+    dataTable: [
+      ['Year', 'Protein', 'Fat', 'Carbs'],
+      ['2014', 240, 100, 340],
+    ]
   };
 
    constructor(private apiService: ApiService) {}

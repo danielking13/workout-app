@@ -1,0 +1,48 @@
+<form class="center" #macroForm="ngForm">
+  <h1>Diet</h1>
+  <div class="formContainer">
+    <mat-form-field *ngIf="true">
+      <input matInput placeholder="Age" [(ngModel)]="age" name="age" required>
+    </mat-form-field>
+    <mat-form-field *ngIf="true">
+      <input matInput placeholder="Weight" [(ngModel)]="weight" name="weight" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Height" [(ngModel)]="inches" name="inches" required>
+      <span matSuffix>in</span>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Exercise Level</mat-label>
+      <mat-select value="sedentary" [(ngModel)]="exerciseLevel" name="exerciseLevel" required>
+        <mat-option value="sedentary">Sedentary</mat-option>
+        <mat-option value="light">Light</mat-option>
+        <mat-option value="moderate">Moderate</mat-option>
+        <mat-option value="extreme">Extreme</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-radio-group [(ngModel)]="gender" name="gender" required>
+      <mat-radio-button value="male" >Male</mat-radio-button>
+      <mat-radio-button value="female">Female</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <strong>Formula:</strong>
+  <mat-button-toggle-group [(ngModel)]="formula" name="formula">
+    <mat-button-toggle value="leanMass">Lean Mass</mat-button-toggle>
+    <mat-button-toggle value="normal">Normal</mat-button-toggle>
+  </mat-button-toggle-group>
+  <strong>Weight Goal:</strong>
+  <mat-button-toggle-group [(ngModel)]="goal" name="goal" required="">
+    <mat-button-toggle value="lose">Lose</mat-button-toggle>
+    <mat-button-toggle value="maintain">Maintain</mat-button-toggle>
+    <mat-button-toggle value="gain">Gain</mat-button-toggle>
+  </mat-button-toggle-group>
+  <br>
+  <button mat-raised-button color="accent" (click)="calculateMacros()" [disabled]="macroForm.form.invalid" >Calculate Macros</button>
+</form>
+
+<mat-card id="macroBarChart" *ngIf="showChart" >
+  <mat-card-content>
+    <google-chart [data]="barChart"></google-chart>
+  </mat-card-content>
+</mat-card>

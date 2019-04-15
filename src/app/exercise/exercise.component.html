@@ -1,0 +1,83 @@
+<div class="center">
+  <h1>Exercises</h1>
+  <p>Here you have a new workout to do for the day generated for you with certain filters selected or browse the list of exercises available.</p>
+</div>
+
+<form class="center">
+  <div class="formContainer">
+    <mat-form-field>
+      <input matInput type="number" max="10" min="1" placeholder="Desired number of exercises (Max of 10)" value="" [(ngModel)]="numberOfExercises" name="numberOfExercises">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Equipment: </mat-label>
+      <mat-select value="barbell" [(ngModel)]="equipment" name="muscleType">
+        <mat-option value="1">Barbell</mat-option>
+        <mat-option value="8">Bench</mat-option>
+        <mat-option value="3">Dumbbell</mat-option>
+        <mat-option value="4">Gym mat</mat-option>
+        <mat-option value="9">Incline Bench</mat-option>
+        <mat-option value="7">None (Body weight)</mat-option>
+        <mat-option value="6">Pull-up bar</mat-option>
+        <mat-option value="2">SZ-Bar</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Muscle Type: </mat-label>
+      <mat-select value="shoulders" [(ngModel)]="muscleType" name="muscleType">
+        <mat-option value="13">Shoulders</mat-option>
+        <mat-option value="8">Arms</mat-option>
+        <mat-option value="12">Back</mat-option>
+        <mat-option value="11">Chest</mat-option>
+        <mat-option value="10">Abs</mat-option>
+        <mat-option value="9,14">Legs</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <button class="addMargin" mat-raised-button color="accent" (click)="generateWorkout()">Generate Workout</button>
+  <button class="addMargin" mat-raised-button color="accent" (click)="browseWorkouts()">Browse Workouts</button>
+</form>
+
+<!--<mat-grid-list cols="2" rowHeight="5:3">-->
+  <!--<mat-grid-tile *ngFor="let exercise of exerciseList">-->
+    <!--<mat-card class="addMargin">-->
+      <!--<mat-card-title>{{exercise.name}}</mat-card-title>-->
+      <!--<mat-card-content>-->
+        <!--<ng-container *ngFor="let image of imageList">-->
+          <!--<img *ngIf="image.exercise == exercise.id" [src]="image.image" alt="exercise image" class="workoutImage">-->
+        <!--</ng-container>-->
+        <!--<div [innerHTML]="exercise.description"></div>-->
+      <!--</mat-card-content>-->
+    <!--</mat-card>-->
+  <!--</mat-grid-tile>-->
+
+<!--</mat-grid-list>-->
+<div class="center" *ngIf="exerciseList && !isGeneratedWorkout">
+  <ng-container *ngFor="let exercise of exerciseList">
+    <mat-card *ngIf="exercise?.description.length > 0 " class="exerciseCard">
+      <mat-card-title>{{exercise.name}}</mat-card-title>
+      <mat-card-content>
+        <ng-container *ngFor="let image of imageList">
+          <img *ngIf="image.exercise == exercise.id" [src]="image.image" alt="exercise image" class="workoutImage">
+        </ng-container>
+        <div [innerHTML]="exercise.description"></div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <button class="addMargin" color="accent" *ngIf="nextList" mat-raised-button (click)="loadMoreExercises()">Get more exercises</button>
+</div>
+
+<div class="center" *ngIf="isGeneratedWorkout && generatedList">
+  <ng-container *ngFor="let exercise of generatedList">
+    <mat-card *ngIf="exercise?.description.length > 0 " class="exerciseCard">
+      <mat-card-title>{{exercise.name}}</mat-card-title>
+      <mat-card-content>
+        <ng-container *ngFor="let image of imageList">
+          <img *ngIf="image.exercise == exercise.id" [src]="image.image" alt="exercise image" class="workoutImage">
+        </ng-container>
+        <div [innerHTML]="exercise.description"></div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</div>
+

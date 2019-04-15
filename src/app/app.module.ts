@@ -19,6 +19,7 @@ import {AuthService} from './auth.service';
 import {AuthInterceptorService} from './authInterceptor.service';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { DietComponent } from './diet/diet.component';
+import { ExerciseComponent } from './exercise/exercise.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DietComponent } from './diet/diet.component';
     DashboardComponent,
     LoginComponent,
     ProfileComponent,
-    DietComponent
+    DietComponent,
+    ExerciseComponent
   ],
   imports: [
     BrowserModule,

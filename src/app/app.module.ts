@@ -8,7 +8,7 @@ import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule,
-  MatFormFieldModule, MatInputModule, MatRadioModule, MatButtonToggleModule, MatSelectModule
+  MatFormFieldModule, MatInputModule, MatRadioModule, MatButtonToggleModule, MatSelectModule, MatTooltipModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -51,7 +51,8 @@ import { ExerciseComponent } from './exercise/exercise.component';
     MatRadioModule,
     Ng2GoogleChartsModule,
     MatButtonToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule
   ],
   providers: [ApiService, AuthService, {
     provide: HTTP_INTERCEPTORS,

@@ -1,17 +1,20 @@
 <form class="center" #macroForm="ngForm">
   <h1>Diet</h1>
   <div class="formContainer">
-    <mat-form-field *ngIf="true">
+    <mat-form-field>
       <input matInput placeholder="Age" [(ngModel)]="age" name="age" required>
     </mat-form-field>
-    <mat-form-field *ngIf="true">
+    <mat-form-field>
       <input matInput placeholder="Weight" [(ngModel)]="weight" name="weight" required>
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Height" [(ngModel)]="inches" name="inches" required>
       <span matSuffix>in</span>
     </mat-form-field>
-
+    <mat-form-field>
+      <input matInput placeholder="Body fat percent" [(ngModel)]="bodyFatPercent" name="bfp" [required]="formula === 'leanMass'">
+      <span matSuffix>%</span>
+    </mat-form-field>
     <mat-form-field>
       <mat-label>Exercise Level</mat-label>
       <mat-select value="sedentary" [(ngModel)]="exerciseLevel" name="exerciseLevel" required>
@@ -22,17 +25,26 @@
       </mat-select>
     </mat-form-field>
     <mat-radio-group [(ngModel)]="gender" name="gender" required>
-      <mat-radio-button value="male" >Male</mat-radio-button>
-      <mat-radio-button value="female">Female</mat-radio-button>
+      <mat-radio-button value="Male" >Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
     </mat-radio-group>
   </div>
-  <strong>Formula:</strong>
-  <mat-button-toggle-group [(ngModel)]="formula" name="formula">
+
+  <strong><mat-icon (click)="formulaTT.toggle()"
+    aria-label="Show info">info</mat-icon>Formula:</strong>
+  <mat-button-toggle-group [(ngModel)]="formula" name="formula" #formulaTT="matTooltip"
+                           matTooltip="Lean Mass should be chosen if you know your body fat%. Otherwise normal will calculate it without this in consideration."
+                           matTooltipPosition="above"
+                           aria-tooltip="show info" required>
     <mat-button-toggle value="leanMass">Lean Mass</mat-button-toggle>
     <mat-button-toggle value="normal">Normal</mat-button-toggle>
   </mat-button-toggle-group>
-  <strong>Weight Goal:</strong>
-  <mat-button-toggle-group [(ngModel)]="goal" name="goal" required="">
+  <strong><mat-icon (click)="weightTT.toggle()"
+                    aria-label="Show info">info</mat-icon>Weight Goal:</strong>
+  <mat-button-toggle-group [(ngModel)]="goal" name="goal" required #weightTT="matTooltip"
+                           matTooltip="Lose calculates based on 80% of your daily calories. Gain will take 120% of your daily calories. "
+                           matTooltipPosition="above"
+                           aria-tooltip="show info">
     <mat-button-toggle value="lose">Lose</mat-button-toggle>
     <mat-button-toggle value="maintain">Maintain</mat-button-toggle>
     <mat-button-toggle value="gain">Gain</mat-button-toggle>

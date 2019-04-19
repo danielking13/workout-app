@@ -64,7 +64,7 @@ export class ExerciseComponent implements OnInit {
     }
   }
 
-  async generateWorkout() {
+  generateWorkout() {
     this.isGeneratedWorkout = true;
     if (!(this.numberOfExercises > 0 && this.numberOfExercises < 11)) {
       this.numberOfExercises = 5;
@@ -89,6 +89,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   browseWorkouts() {
+    this.isGeneratedWorkout = false;
     this.api.getExercises(this.equipment, this.muscleType).subscribe( res => {
       console.log(res);
       this.nextList = res.next;

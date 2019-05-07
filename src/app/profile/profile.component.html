@@ -7,18 +7,17 @@
   <mat-form-field appearance="outline">
     <mat-label>First Name</mat-label>
     <input matInput placeholder="Placeholder" value="{{userData?.profile.firstName}}" [readonly]="!canEdit">
-    <mat-icon matSuffix (click)="allowEditing()">create</mat-icon>
+    <!--<mat-icon matSuffix (click)="allowEditing()">create</mat-icon>-->
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Last Name</mat-label>
     <input matInput placeholder="Placeholder" value="{{userData?.profile.lastName}}" [readonly]="!canEdit">
-    <mat-icon matSuffix (click)="allowEditing()">create</mat-icon>
+    <!--<mat-icon matSuffix (click)="allowEditing()">create</mat-icon>-->
   </mat-form-field>
   <br>
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
     <input matInput placeholder="Placeholder" value="{{userData?.email}}" [readonly]="!canEdit">
-    <mat-icon matSuffix (click)="allowEditing()">create</mat-icon>
   </mat-form-field>
   <!--TODO: most likely don't want to change password in a form like this-->
   <!--<mat-form-field appearance="outline">-->
@@ -30,30 +29,30 @@
   <mat-form-field appearance="outline">
     <mat-label>Height</mat-label>
     <input matInput placeholder="Placeholder" name="height" [(ngModel)]="userData?.profile.height" [readonly]="!canEdit">
-    <mat-icon matSuffix (click)="allowEditing()">create</mat-icon>
+    <!--<mat-icon matSuffix (click)="allowEditing()">create</mat-icon>-->
   </mat-form-field>
   <br>
   <mat-form-field appearance="outline">
     <mat-label>Gender</mat-label>
     <input matInput placeholder="Placeholder" value="{{userData?.profile.gender}}" [readonly]="!canEdit">
-    <mat-icon matSuffix (click)="allowEditing()">create</mat-icon>
+    <!--<mat-icon matSuffix (click)="allowEditing()">create</mat-icon>-->
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Date of Birth</mat-label>
     <input matInput placeholder="Placeholder" value="{{userData?.profile.dob}}" [readonly]="!canEdit">
-    <mat-icon matSuffix (click)="allowEditing()">create</mat-icon>
+    <!--<mat-icon matSuffix (click)="allowEditing()">create</mat-icon>-->
   </mat-form-field>
   <br>
   <mat-form-field appearance="outline">
     <mat-label>Body fat %</mat-label>
-    <input matInput placeholder="Placeholder" value="{{userData?.profile.bodyFat}}" [readonly]="!canEdit">
-    <mat-icon matSuffix (click)="allowEditing()">create</mat-icon>
+    <input matInput placeholder="Placeholder" value="{{userData?.profile.bodyFatPercent}}" [readonly]="!canEdit">
+    <!--<mat-icon matSuffix (click)="allowEditing()">create</mat-icon>-->
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Weight</mat-label>
     <input matInput placeholder="Placeholder" value="{{userData?.profile.weight}}" [readonly]="!canEdit">
-    <mat-icon matSuffix (click)="allowEditing()">create</mat-icon>
+    <!--<mat-icon matSuffix (click)="allowEditing()">create</mat-icon>-->
   </mat-form-field>
   <br>
-  <button mat-raised-button color="accent">Submit Changes</button>
+  <!--<button mat-raised-button color="accent">Submit Changes</button>-->
 </form>

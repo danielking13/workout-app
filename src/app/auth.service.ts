@@ -9,15 +9,15 @@ export class AuthService {
   constructor( private http: HttpClient, private router: Router) {}
 
   get token() {
-    return localStorage.getItem(this.TOKEN_KEY);
+    return sessionStorage.getItem(this.TOKEN_KEY);
   }
 
   get isAuthenticated() {
-    return !!localStorage.getItem(this.TOKEN_KEY);
+    return !!sessionStorage.getItem(this.TOKEN_KEY);
   }
 
   logout() {
-    localStorage.removeItem(this.TOKEN_KEY);
+    sessionStorage.removeItem(this.TOKEN_KEY);
   }
 
   createUser(newUserData) {
@@ -35,6 +35,6 @@ export class AuthService {
   }
 
   saveToken(token) {
-    localStorage.setItem(this.TOKEN_KEY, token);
+    sessionStorage.setItem(this.TOKEN_KEY, token);
   }
 }

@@ -25,16 +25,6 @@ function checkAuthenticated(req, res, next) {
   next()
 }
 
-app.get('/users', async (req, res) => {
-  try {
-    var users = await User.find({}, '-password -__v')
-    res.send(users)
-  } catch (error) {
-      console.error(error)
-      res.sendStatus(500)
-  }
-})
-
 app.get('/profile', checkAuthenticated, async (req, res) => {
   try {
     var user = await User.findById(req.userId, '-password -__v')
@@ -44,6 +34,19 @@ app.get('/profile', checkAuthenticated, async (req, res) => {
       res.sendStatus(500)
   }
 })
+
+// app.put('/profile', checkAuthenticated, async (req, res) => {
+//   var userData = req.body
+//   if(userData.profile.) {
+//
+//   }
+//   var user = new User(userData)
+//   user.save((err, newUser) => {
+//     if (err)
+//       return res.status(401).send({message: 'Error saving user'})
+//   });
+//   return res.status(200).send(user)
+// })
 
 app.post('/register', auth.register)
 

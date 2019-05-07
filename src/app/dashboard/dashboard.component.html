@@ -1,34 +1,51 @@
 <div class="center">
   <h1 >Dashboard</h1>
+  <h3>Hey, {{name}}! {{positiveGreeting}}</h3>
+
   <mat-card class="dashboardCard">
     <mat-card-header>
-      <mat-card-title>Macros for the day</mat-card-title>
+      <mat-card-title> <mat-icon>movie_creation</mat-icon> GIF of the day</mat-card-title>
+    </mat-card-header>
+    <mat-card-content [innerHTML]="GIFofTheDay">
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="dashboardCard">
+    <mat-card-header>
+      <mat-card-title><mat-icon>whatshot</mat-icon> Discover your macros</mat-card-title>
     </mat-card-header>
     <mat-card-content style="min-width: 400px;">
       <google-chart [data]="barChart"></google-chart>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button routerLink="/diet">Recalculate your macros</button>
+      <button mat-raised-button color="accent" routerLink="/diet">Calculate your macros</button>
     </mat-card-actions>
   </mat-card>
+
   <mat-card class="dashboardCard">
     <mat-card-header>
-      <mat-card-title>Your Current BMI</mat-card-title>
+      <mat-card-title> <mat-icon>insert_chart</mat-icon> Your Current BMI </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <p>
-        {{userData?.profile.firstName}}'s BMI is {{bmi }}
+        Your BMI is {{bmi}}, which puts you in {{message}}
       </p>
-      <div *ngIf="gaugeChart" style="margin-left: 20px;">
-        <google-chart [data]="gaugeChart"></google-chart>
+
+      <div class="bar">
+        <div class="categories" id="underweight">Underweight</div>
+        <div class="categories" id="normal">Normal</div>
+        <div class="categories" id="overweight">Overweight</div>
+        <div class="categories" id="obese">Obese</div>
+        BMI Categories
       </div>
-      <p>{{message}}</p>
+      <p>Ranges: Underweight is 0 - 18.5 || Normal is 18.5 - 25  </p>
+      <p>Overweight is 25 - 30 || Obese is 30 and higher </p>
     </mat-card-content>
   </mat-card>
+
   <mat-card class="dashboardCard">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Generate workout</mat-card-title>
+      <mat-card-title><mat-icon>flash_on</mat-icon> Generate Workout </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <p>
@@ -38,19 +55,10 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button routerLink="/exercise">CREATE ROUTINE</button>
+      <button mat-raised-button color="accent" routerLink="/exercise">Create Routine</button>
     </mat-card-actions>
   </mat-card>
-  <mat-card class="dashboardCard">
-    <mat-card-header>
-      <mat-card-title>Weight</mat-card-title>
-    </mat-card-header>
-    <mat-card-content style="min-width: 400px;">
-        <google-chart  [data]="lineChart"></google-chart>
-    </mat-card-content>
-  </mat-card>
 </div>
-<!--<google-chart [data]="pieChart"></google-chart>-->
 
 
 

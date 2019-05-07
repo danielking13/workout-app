@@ -9,84 +9,55 @@ import {GoogleChartInterface} from 'ng2-google-charts/google-charts-interfaces';
 })
 export class DashboardComponent implements OnInit {
     userData: any;
-    age: number;
-    bmi: number = 0;
+    bmi: number;
     message: string;
-    // gaugeChart: GoogleChartInterface;
+    name: string;
+    positiveGreeting: string;
+    greetingsArray = [
+      'Keep up the good work!',
+      'You look great today!',
+      'Pat yourself on the back. You earned it!',
+      'If You Were A Box Of Crayons, You\'d Be The Giant Name-Brand One With The Built-In Sharpener',
+      'You are a light in the darkness!',
+      'In High School, I Bet You Were Voted “Most Likely To Keep Being Awesome"',
+      'Babies And Small Animals Probably Love You',
+      'You are inspiring!',
+      'The road to success is dotted with many tempting parking spaces..',
+      'If at first you don\'t succeed, then skydiving isn\'t for you.'
+    ];
+    GIFofTheDay: string;
+    arrayOfGIFS = [
+      '<img alt="fitness weightlifting GIF" src="https://media2.giphy.com/media/10cylTGU0KcAsE/giphy.webp?cid=790b76115cd0d605434b34324d46e076&amp;rid=giphy.webp" width="248">',
+      '<img src="https://media3.giphy.com/media/3o85xunRezGKPOkcG4/giphy.gif?cid=790b76115cd0d5524b7a4c6c6f8db617&amp;rid=giphy.gif" alt="workout exercise GIF by Justin Gammon" width="248px">',
+      '<img alt="exercise GIF by Petter Pentilä" height="186" src="https://media3.giphy.com/media/4bjIKBOWUnVPICCzJc/200.webp?cid=790b76115cd0d605434b34324d46e076&amp;rid=200.webp" width="300">',
+      '<img alt="exercise push it GIF by Jason Clarke" height="331" src="https://media0.giphy.com/media/vF25I06jdODgA/200w.webp?cid=790b76115cd1a19a5167437855da5c2e&amp;rid=200w.webp" width="248">',
+      '<img src="https://media3.giphy.com/media/14m3HcGbcy4v9m/giphy.gif?cid=790b76115cd1a19a5167437855da5c2e&amp;rid=giphy.gif" alt="exercise carrot GIF" width="300">',
+      '<img src="https://media1.giphy.com/media/vuIVvW0NsWBzy/giphy.gif?cid=790b76115cd1a506522e53417732f74b&amp;rid=giphy.gif" alt="working it arnold schwarzenegger GIF" width="300">',
+      '<img alt="healthy GIF" src="https://media1.giphy.com/media/q2u7LLPVWI0rm/200w.webp?cid=790b76115cd1a586756a695a59b9a4b7&amp;rid=200w.webp" width="350" height="250">'
+    ];
 
-  public pieChart: GoogleChartInterface = {
-    chartType: 'PieChart',
-    dataTable: [
-      ['Task', 'Hours per Day'],
-      ['Work',     11],
-      ['Eat',      2],
-      ['Commute',  2],
-      ['Watch TV', 2],
-      ['Sleep',    7]
-    ],
-    // opt_firstRowIsData: true,
-    options: {'title': 'Tasks'},
-  };
-
-  public gaugeChart: GoogleChartInterface = {
-    chartType: 'Gauge',
-    dataTable: [
-      ['Label', 'BMI'],
-      ['BMI', this.bmi]
-    ],
-    options: {
-      animation: {easing: 'out'},
-      width: 150, height: 150,
-      greenFrom: 18, greenTo: 27,
-      redFrom: 27, redTo: 45,
-      yellowFrom: 9, yellowTo: 18,
-      minorTicks: 5,
-      min: 0, max: 45,
-      majorTicks: ['0', '10', '18.5', '25', '30', '50'],
-      greenColor: '#00cf6b'
-    }
-  };
-
-  public lineChart = {
-    chartType: 'LineChart',
-    dataTable: [
-      ['Year', 'Weight'],
-      ['2004',  100],
-      ['2005',  117],
-      ['2006',  66],
-      ['2007',  103]
-    ],
-    options: {
-      title: 'My weight',
-      legend: { position: 'bottom' }
-    }
-  };
-
-  public barChart = {
-    chartType: 'Bar',
-    dataTable: [
-      ['Year', 'Protein', 'Fat', 'Carbs'],
-      ['2014', 240, 100, 340],
-    ]
-  };
+    public barChart = {
+      chartType: 'Bar',
+      dataTable: [
+        ['Example Total Grams: 650', 'Protein', 'Fat', 'Carbs'],
+        [' ', 250, 100, 300],
+      ]
+    };
 
    constructor(private apiService: ApiService) {}
 
    ngOnInit() {
-     // this.apiService.getData();
      this.apiService.getUserData().subscribe(res => {
        this.userData = res;
+       // console.log(this.userData);
+       this.name = this.userData.profile.firstName;
        this.getBMI(this.userData);
      });
-   }
 
-  // private CalculateAge(): void {
-  //   if(this.userData.profile.dob) {
-  //     const birthDate: any = new Date(this.userData.profile.dob);
-  //     const timeDiff = Math.abs(Date.now() - birthDate);
-  //     this.age = Math.floor((timeDiff / (1000 * 3600 * 24))/365);
-  //   }
-  // }
+     const date = new Date();
+     this.positiveGreeting = this.greetingsArray[( Math.floor(Math.random() * this.greetingsArray.length))];
+     this.GIFofTheDay = this.arrayOfGIFS[date.getDay()];
+   }
 
   private getBMI(userData) {
      const weight = userData.profile.weight;
@@ -94,19 +65,13 @@ export class DashboardComponent implements OnInit {
      this.bmi = <any>(weight * .45 / (Math.pow(height * .025, 2))).toFixed(2);
 
     if(this.bmi < 18.5 ) {
-      this.message = 'You are in the underweight range.';
+      this.message = 'the underweight range.';
     } else if(this.bmi > 18.5 && this.bmi < 24.9) {
-      this.message = 'You are in a healthy range! Great job!';
+      this.message = 'a healthy range! Great job!';
     } else if(this.bmi > 25 && this.bmi < 29.9) {
-      this.message = 'You are in the overweight range.';
+      this.message = 'the overweight range.';
     } else {
-      this.message = 'You are in the obese range.';
+      this.message = 'the obese range.';
     }
-
-    const dataTable = this.gaugeChart.component.data.dataTable;
-    // dataTable[1][1] = this.bmi;
-    console.log(dataTable);
-    console.log(this.gaugeChart.component.data);
-    // this.gaugeChart.component.draw();
   }
 }

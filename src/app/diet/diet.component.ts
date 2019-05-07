@@ -29,13 +29,12 @@ export class DietComponent implements OnInit {
 
   ngOnInit() {
     this.api.getUserData().subscribe(res => {
-      console.log(res);
       this.userData = res;
       this.CalculateAge();
       this.inches = this.userData.profile.height;
       this.weight = this.userData.profile.weight;
       this.gender = this.userData.profile.gender;
-      // this.bodyFatPercent = this.userData.profile.bodyFatPercent || 0;
+      this.bodyFatPercent = this.userData.profile.bodyFatPercent;
     });
   }
 
@@ -83,8 +82,8 @@ export class DietComponent implements OnInit {
     this.barChart = {
       chartType: 'Bar',
       dataTable: [
-        ['Total Grams', 'Protein', 'Fat', 'Carbs'],
-        [(this.protein + this.fat + this.carbs), this.protein, this.fat, this.carbs]
+        ['Total Grams: ' + (this.protein + this.fat + this.carbs).toFixed(0), 'Protein', 'Fat', 'Carbs'],
+        [' ' , this.protein, this.fat, this.carbs]
       ],
       options: {
         chart: {

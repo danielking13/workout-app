@@ -34,18 +34,7 @@ export class ExerciseComponent implements OnInit {
 
   constructor(private api: ApiService) { }
 
-  ngOnInit() {
-    // this.api.getExercises().subscribe( res => {
-    //   console.log(res);
-    //   this.nextList = res.next;
-    //   this.exerciseList = res.results;
-    // });
-    // this.api.getExerciseImages().subscribe(res => {
-    //   console.log(res);
-    //   this.imageList = res.results;
-    //   this.nextImageList = res.next;
-    // });
-  }
+  ngOnInit() {}
 
   loadMoreExercises() {
     if(this.nextList) {
